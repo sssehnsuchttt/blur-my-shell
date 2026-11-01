@@ -25,6 +25,7 @@
     <file preprocess="xml-stripblanks">ui/pages/pipelines/pipeline-page.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/pipelines/pipelines.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/shell/app-folders.ui</file>
+    <file preprocess="xml-stripblanks">ui/pages/shell/app-menus.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/shell/component.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/shell/dash.ui</file>
     <file preprocess="xml-stripblanks">ui/pages/shell/overview.ui</file>

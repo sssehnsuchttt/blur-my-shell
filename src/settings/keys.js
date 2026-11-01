@@ -71,6 +71,13 @@ export const KEYS = [
         ]
     },
     {
+        component: "app-menus", schemas: [
+            { type: Type.B, name: "blur" },
+            { type: Type.S, name: "pipeline" },
+            { type: Type.I, name: "corner-radius" },
+        ]
+    },
+    {
         component: "lockscreen", schemas: [
             { type: Type.B, name: "blur" },
             { type: Type.S, name: "pipeline" },

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="blur-my-shell@aunetx">
+  <template class="AppMenus" parent="AdwPreferencesPage">
+    <child>
+      <object class="AdwPreferencesGroup">
+        <property name="description" translatable="yes">Menus are only visibly blurred when the GTK theme draws them with a translucent background. They follow the whitelist and blacklist of the applications blur.</property>
+
+        <child>
+          <object class="AdwSwitchRow" id="blur">
+            <property name="title" translatable="yes">Blur</property>
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="AdwPreferencesGroup">
+        <child>
+          <object class="PipelineChooseRow" id="pipeline_choose_row">
+            <property name="sensitive" bind-source="blur" bind-property="active" bind-flags="sync-create" />
+          </object>
+        </child>
+      </object>
+    </child>
+
+    <child>
+      <object class="AdwPreferencesGroup">
+        <property name="title" translatable="yes">Appearance</property>
+        <property name="sensitive" bind-source="blur" bind-property="active" bind-flags="sync-create" />
+
+        <child>
+          <object class="AdwSpinRow">
+            <property name="title" translatable="yes">Corner radius of edge effects</property>
+            <property name="subtitle" translatable="yes">Shapes effects like refraction, match it to the menus of your GTK theme. The blur already follows their shape.</property>
+            <property name="adjustment">corner_radius</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+
+  <object class="GtkAdjustment" id="corner_radius">
+    <property name="lower">0</property>
+    <property name="upper">50</property>
+    <property name="step-increment">1</property>
+  </object>
+</interface>

@@ -14,6 +14,7 @@ function get_pipeline_components(preferences) {
         ['window_list', _('Window List')],
         ['coverflow_alt_tab', _('Coverflow Alt-Tab')],
         ['applications', _('Applications')],
+        ['app_menus', _('Application menus')],
     ].map(([key, name]) => ({ component: preferences[key], name }));
 }
 

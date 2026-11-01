@@ -156,6 +156,7 @@
         <child name='panel' schema='org.gnome.shell.extensions.blur-my-shell.panel'></child>
         <child name='dash-to-dock' schema='org.gnome.shell.extensions.blur-my-shell.dash-to-dock'></child>
         <child name='applications' schema='org.gnome.shell.extensions.blur-my-shell.applications'></child>
+        <child name='app-menus' schema='org.gnome.shell.extensions.blur-my-shell.app-menus'></child>
         <child name='screenshot' schema='org.gnome.shell.extensions.blur-my-shell.screenshot'></child>
         <child name='lockscreen' schema='org.gnome.shell.extensions.blur-my-shell.lockscreen'></child>
         <child name='window-list' schema='org.gnome.shell.extensions.blur-my-shell.window-list'></child>
@@ -163,6 +164,26 @@
         <child name='popup' schema='org.gnome.shell.extensions.blur-my-shell.popup'></child>
         <child name='hidetopbar' schema='org.gnome.shell.extensions.blur-my-shell.hidetopbar'></child>
         <child name='dash-to-panel' schema='org.gnome.shell.extensions.blur-my-shell.dash-to-panel'></child>
+    </schema>
+
+    <!-- APP MENUS -->
+    <schema id="org.gnome.shell.extensions.blur-my-shell.app-menus"
+        path="/org/gnome/shell/extensions/blur-my-shell/app-menus/">
+        <!-- BLUR -->
+        <key type="b" name="blur">
+            <default>false</default>
+            <summary>Boolean, whether to blur the menus of applications, which needs a theme drawing them translucent</summary>
+        </key>
+        <!-- PIPELINE -->
+        <key type="s" name="pipeline">
+            <default>"pipeline_default"</default>
+            <summary>String, the name of the pipeline to use. It must exist, else "pipeline_default" will be used</summary>
+        </key>
+        <!-- CORNER RADIUS -->
+        <key type="i" name="corner-radius">
+            <default>15</default>
+            <summary>Corner radius of the edge effects, like refraction, which should match the menus of the GTK theme (15 for libadwaita). The blur itself follows the shape of the menus</summary>
+        </key>
     </schema>
 
     <!-- OVERVIEW -->

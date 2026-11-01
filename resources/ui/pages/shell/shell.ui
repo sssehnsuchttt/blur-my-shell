@@ -38,6 +38,14 @@
             <property name="subtitle" translatable="yes">Menus, quick settings, notifications and dialogs</property>
           </object>
         </child>
+
+        <child>
+          <object class="ComponentRow" id="app_menus_row">
+            <property name="icon">open-menu-symbolic</property>
+            <property name="title" translatable="yes">Application menus</property>
+            <property name="subtitle" translatable="yes">Context menus and popovers of applications</property>
+          </object>
+        </child>
       </object>
     </child>
 

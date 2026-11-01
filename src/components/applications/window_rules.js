@@ -7,7 +7,19 @@ const BLURRED_FRAME_TYPES = [
     Meta.FrameType.ATTACHED,
 ];
 
+// GTK popovers and other menus of Wayland clients are xdg_popup surfaces
+const POPUP_WINDOW_TYPES = [
+    Meta.WindowType.DROPDOWN_MENU,
+    Meta.WindowType.POPUP_MENU,
+];
+
 const TITLE_PREFIX = 'title:';
+
+/// Whether the window is a menu popup of a native Wayland client.
+export function is_app_popup(meta_window) {
+    return POPUP_WINDOW_TYPES.includes(meta_window.get_window_type())
+        && meta_window.get_client_type() === Meta.WindowClientType.WAYLAND;
+}
 
 /// Converts a case-insensitive wildcard pattern, where `*` matches any sequence and `?` any single
 /// character, to a RegExp.
@@ -45,11 +57,19 @@ export class WindowRules {
     }
 
     matches(meta_window) {
-        const listed = this.settings.applications.ENABLE_ALL
+        return meta_window.get_wm_class() !== ''
+            && this.listed(meta_window)
+            && BLURRED_FRAME_TYPES.includes(meta_window.get_frame_type());
+    }
+
+    /// A popup follows the rules of the window it belongs to.
+    matches_popup(meta_window) {
+        return this.listed(meta_window.get_transient_for() ?? meta_window);
+    }
+
+    listed(meta_window) {
+        return this.settings.applications.ENABLE_ALL
             ? !matches_any(meta_window, this.blacklist)
             : matches_any(meta_window, this.whitelist);
-        return meta_window.get_wm_class() !== ''
-            && listed
-            && BLURRED_FRAME_TYPES.includes(meta_window.get_frame_type());
     }
 }

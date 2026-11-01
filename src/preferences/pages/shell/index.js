@@ -9,6 +9,7 @@ import { Dash } from './dash.js';
 import { PopupBlur } from './popup.js';
 import { Overview } from './overview.js';
 import { AppFolders } from './app_folders.js';
+import { AppMenus } from './app_menus.js';
 import { ComponentPage } from './component.js';
 
 import '../../widgets/component_row.js';
@@ -22,6 +23,7 @@ export const ShellPage = GObject.registerClass({
         'panel_row',
         'dash_row',
         'popup_row',
+        'app_menus_row',
         'overview_row',
         'appfolder_row',
         'lockscreen_row',
@@ -50,6 +52,9 @@ export const ShellPage = GObject.registerClass({
         );
         this.add_component(this._popup_row, preferences.popup,
             () => new PopupBlur(preferences, ...pipelines)
+        );
+        this.add_component(this._app_menus_row, preferences.app_menus,
+            () => new AppMenus(preferences, ...pipelines)
         );
         this.add_component(this._overview_row, preferences.overview,
             () => new Overview(preferences, ...pipelines)

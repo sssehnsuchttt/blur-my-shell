@@ -18,6 +18,7 @@ import { AppFoldersBlur } from './components/appfolders.js';
 import { WindowListBlur } from './components/window_list.js';
 import { CoverflowAltTabBlur } from './components/coverflow_alt_tab.js';
 import { ApplicationsBlur } from './components/applications/index.js';
+import { AppMenusBlur } from './components/applications/menus.js';
 import { ScreenshotBlur } from './components/screenshot.js';
 import { PopupBlur } from './components/popup/index.js';
 import { connect_component_settings } from './components/settings_connections.js';
@@ -71,6 +72,7 @@ export default class BlurMyShell extends Extension {
         this._window_list_blur = new WindowListBlur(...init());
         this._coverflow_alt_tab_blur = new CoverflowAltTabBlur(...init());
         this._applications_blur = new ApplicationsBlur(...init());
+        this._app_menus_blur = new AppMenusBlur(...init());
         this._screenshot_blur = new ScreenshotBlur(...init());
         this._popup = new PopupBlur(...init());
         this._power_profile_monitor = Gio.PowerProfileMonitor.dup_default();
@@ -125,6 +127,7 @@ export default class BlurMyShell extends Extension {
         this._window_list_blur = null;
         this._coverflow_alt_tab_blur = null;
         this._applications_blur = null;
+        this._app_menus_blur = null;
         this._screenshot_blur = null;
         this._popup = null;
         this._power_profile_monitor = null;
@@ -200,6 +203,7 @@ export default class BlurMyShell extends Extension {
         this._window_list_blur.disable();
         this._coverflow_alt_tab_blur.disable();
         this._applications_blur.disable();
+        this._app_menus_blur.disable();
         this._screenshot_blur.disable();
 
         this._user_session_mode_enabled = false;
@@ -233,6 +237,7 @@ export default class BlurMyShell extends Extension {
         this._enable_component(this._overview_blur, this._settings.overview.BLUR);
         this._enable_component(this._appfolder_blur, this._settings.appfolder.BLUR);
         this._enable_component(this._applications_blur, this._settings.applications.BLUR);
+        this._enable_component(this._app_menus_blur, this._settings.app_menus.BLUR);
         this._enable_component(this._window_list_blur, this._settings.window_list.BLUR);
         this._enable_component(this._coverflow_alt_tab_blur, this._settings.coverflow_alt_tab.BLUR);
         this._enable_component(this._screenshot_blur, this._settings.screenshot.BLUR);

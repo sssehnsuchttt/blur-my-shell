@@ -27,6 +27,7 @@ export function connect_component_settings(extension) {
     const panel = extension._panel_blur;
     const dash = extension._dash_to_dock_blur;
     const applications = extension._applications_blur;
+    const app_menus = extension._app_menus_blur;
     const lockscreen = extension._lockscreen_blur;
     const window_list = extension._window_list_blur;
     const coverflow = extension._coverflow_alt_tab_blur;
@@ -163,6 +164,22 @@ export function connect_component_settings(extension) {
                 applications.update_all_windows();
         }
     ));
+
+    connect_toggle(extension, settings.app_menus, app_menus);
+    connect(settings.app_menus, 'PIPELINE', when_enabled(
+        app_menus,
+        () => app_menus.update_pipeline()
+    ));
+    connect(settings.app_menus, 'CORNER_RADIUS', when_enabled(
+        app_menus,
+        () => app_menus.update_corner_radius()
+    ));
+    ['ENABLE_ALL', 'WHITELIST', 'BLACKLIST'].forEach(property =>
+        connect(settings.applications, property, when_enabled(
+            app_menus,
+            () => app_menus.update_rules()
+        ))
+    );
 
     connect(settings, 'POWER_SAVER', () => extension._update_power_saver());
 
